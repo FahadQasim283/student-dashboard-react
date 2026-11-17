@@ -1,18 +1,5 @@
 // Sidebar.jsx - Navigation sidebar for CampusHub
-import { useState } from 'react';
-
-const navigationItems = [
-  { label: 'Dashboard', icon: '📊' },
-  { label: 'Students', icon: '🎓' },
-  { label: 'Courses', icon: '📚' },
-  { label: 'Attendance', icon: '📋' },
-  { label: 'Settings', icon: '⚙️' },
-];
-
 function Sidebar({ isCollapsed, onToggle }) {
-  // This state gives each sidebar item a simple active selection without routing.
-  const [activeItem, setActiveItem] = useState('Dashboard');
-
   return (
     <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       {/* University Branding */}
@@ -36,19 +23,26 @@ function Sidebar({ isCollapsed, onToggle }) {
       {/* Navigation Menu */}
       <nav className="sidebar-nav">
         <ul className="nav-list">
-          {navigationItems.map((item) => (
-            <li key={item.label}>
-              <button
-                type="button"
-                className={`nav-item ${activeItem === item.label ? 'active' : ''}`}
-                onClick={() => setActiveItem(item.label)}
-                aria-current={activeItem === item.label ? 'page' : undefined}
-              >
-                <span className="nav-icon">{item.icon}</span>
-                <span className="nav-label">{item.label}</span>
-              </button>
-            </li>
-          ))}
+          <li className="nav-item active">
+            <span className="nav-icon">📊</span>
+            <span className="nav-label">Dashboard</span>
+          </li>
+          <li className="nav-item">
+            <span className="nav-icon">🎓</span>
+            <span className="nav-label">Students</span>
+          </li>
+          <li className="nav-item">
+            <span className="nav-icon">📚</span>
+            <span className="nav-label">Courses</span>
+          </li>
+          <li className="nav-item">
+            <span className="nav-icon">📋</span>
+            <span className="nav-label">Attendance</span>
+          </li>
+          <li className="nav-item">
+            <span className="nav-icon">⚙️</span>
+            <span className="nav-label">Settings</span>
+          </li>
         </ul>
       </nav>
 
@@ -56,4 +50,12 @@ function Sidebar({ isCollapsed, onToggle }) {
       <div className="sidebar-footer">
         <div className="system-status">
           <span className="status-dot"></span>
-          <span className="status-text">System Online</
+          <span className="status-text">System Online</span>
+        </div>
+        <p className="system-version">CampusHub v1.0 • Fall 2026</p>
+      </div>
+    </aside>
+  );
+}
+
+export default Sidebar;
